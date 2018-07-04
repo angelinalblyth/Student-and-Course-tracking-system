@@ -1,3 +1,4 @@
+import db.DBCourse;
 import db.DBHelper;
 import models.Course;
 import models.Level;
@@ -33,6 +34,11 @@ public class Runner {
 
         List<Student> students = DBHelper.getAll(Student.class);
         List<Course> courses = DBHelper.getAll(Course.class);
+
+        Student foundStudent = DBHelper.find(Student.class, 1);
+        Course foundCourse = DBHelper.find(Course.class, 1);
+
+        List<Student> studentsOnCourse = DBCourse.listOfStudentOnCourse(course1);
 
     }
 }
