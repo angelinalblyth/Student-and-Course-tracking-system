@@ -11,6 +11,7 @@ public class Course {
     private String title;
     private Level level;
     private List<Student> students;
+    private List<Lesson> lessons;
 
     public Course() {
     }
