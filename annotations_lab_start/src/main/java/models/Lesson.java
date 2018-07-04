@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Calendar;
 
 @Entity
 @Table(name = "lessons")
@@ -9,17 +10,19 @@ public class Lesson {
     private int id;
     private String title;
     private int classNumber;
-    private String date;
+    private Calendar date;
     private Course course;
+    private Instructor instructor;
 
     public Lesson() {
     }
 
-    public Lesson(String title, int classNumber, String date, Course course ) {
+    public Lesson(String title, int classNumber, Calendar date, Course course, Instructor instructor ) {
         this.title = title;
         this.classNumber = classNumber;
         this.date = date;
         this.course = course;
+        this.instructor = instructor;
     }
 
     @Id
@@ -51,12 +54,12 @@ public class Lesson {
         this.classNumber = classNumber;
     }
 
-    @Column(name = "date")
-    public String getDate() {
+    @Column(name ="date")
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 
@@ -70,4 +73,14 @@ public class Lesson {
         this.course = course;
     }
 
+
+    @ManyToOne
+    @JoinColumn(name = "instructor_id", nullable = false)
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
 }

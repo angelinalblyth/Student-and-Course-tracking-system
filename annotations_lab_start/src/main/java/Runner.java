@@ -1,10 +1,8 @@
 import db.DBCourse;
 import db.DBHelper;
-import models.Course;
-import models.Lesson;
-import models.Level;
-import models.Student;
+import models.*;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class Runner {
@@ -16,13 +14,19 @@ public class Runner {
         Course course2 = new Course("CS50", Level.BA);
         DBHelper.save(course2);
 
-        Lesson lesson1 = new Lesson("Biology", 3, "Monday", course1);
+        Instructor instructor1 = new Instructor("Steve");
+        DBHelper.save(instructor1);
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(2018, 7, 2);
+
+        Lesson lesson1 = new Lesson("Biology", 3, cal, course1, instructor1);
         DBHelper.save(lesson1);
-        Lesson lesson2 = new Lesson("Python", 2, "Tuesday", course2);
+        Lesson lesson2 = new Lesson("Python", 2, cal,course2, instructor1);
         DBHelper.save(lesson2);
-        Lesson lesson3 = new Lesson("Ruby", 4, "Wednesday", course2);
+        Lesson lesson3 = new Lesson("Ruby", 4, cal, course2, instructor1);
         DBHelper.save(lesson3);
-        Lesson lesson4 = new Lesson("Machine Learning", 2, "Monday", course2);
+        Lesson lesson4 = new Lesson("Machine Learning", 2, cal, course2, instructor1);
         DBHelper.save(lesson4);
 
         Student student1 = new Student("Angelina", "Blyth", 27, 12345, course1);
@@ -35,6 +39,8 @@ public class Runner {
         DBHelper.save(student4);
         Student student5 = new Student("Meg", "Smith", 26, 12349, course1);
         DBHelper.save(student5);
+
+
 
 
         student1.setAge(28);

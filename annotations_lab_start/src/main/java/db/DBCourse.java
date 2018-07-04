@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DBCourse {
 
-    private static Transaction transaction;
+
     private static Session session;
 
     public static List<Student> listOfStudentOnCourse(Course course){
@@ -25,7 +25,6 @@ public class DBCourse {
             criteria.add(Restrictions.eq("course", course));
             students = criteria.list();
         }catch (HibernateException e){
-            transaction.rollback();
             e.printStackTrace();
         }finally {
             session.close();
@@ -41,7 +40,6 @@ public class DBCourse {
             criteria.add(Restrictions.eq("course", course));
             lessons = criteria.list();
         }catch (HibernateException e){
-            transaction.rollback();
             e.printStackTrace();
         }finally {
             session.close();
